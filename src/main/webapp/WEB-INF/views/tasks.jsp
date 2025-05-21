@@ -13,7 +13,6 @@
 <head>
     <title>Task List</title>
 
-    <!-- ===== BASIC STYLE ===== -->
     <style>
         :root {
             --primary: #2C7BE5;
@@ -47,7 +46,6 @@
             margin-bottom: 1rem;
         }
 
-        /* ---------- Top links ---------- */
         .actions {
             margin-bottom: 1.25rem;
             text-align: center;
@@ -64,7 +62,6 @@
             text-decoration: underline;
         }
 
-        /* ---------- Table ---------- */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -90,7 +87,6 @@
             background: #f8f9fb;
         }
 
-        /* ---------- Status ---------- */
         .status-done {
             color: var(--success);
             font-weight: 600;
@@ -101,7 +97,6 @@
             font-weight: 600;
         }
 
-        /* ---------- Buttons ---------- */
         .btn {
             border: none;
             border-radius: 4px;
@@ -131,13 +126,10 @@
             opacity: .85;
         }
 
-        /* ---------- Responsive tweaks ---------- */
         @media (max-width: 640px) {
             th:nth-child(1), td:nth-child(1) {
                 display: none;
             }
-
-            /* скрыть ID на маленьких экранах */
         }
     </style>
 </head>
@@ -145,8 +137,11 @@
 
 <div class="container">
     <h2>Your Tasks</h2>
-
-    <!-- ───────── ФИЛЬТРЫ ───────── -->
+    <div style="text-align: right; margin-bottom: 1rem;">
+        <form action="${pageContext.request.contextPath}/api/auth/logout" method="post" style="display:inline;">
+            <button class="btn delete" type="submit">Logout</button>
+        </form>
+    </div>
     <form id="filter" method="get" action="${pageContext.request.contextPath}/tasks" class="filters">
         <label>Attestation:
             <select name="attId" onchange="this.form.submit()">

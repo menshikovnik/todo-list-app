@@ -30,12 +30,6 @@ public class AuthServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
         } else if ("/register".equals(path)) {
             req.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(req, resp);
-        } else if ("/logout".equals(path)) {
-            HttpSession session = req.getSession(false);
-            if (session != null) {
-                session.invalidate();
-            }
-            resp.sendRedirect(req.getContextPath() + "/api/auth/login");
         } else {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
@@ -49,6 +43,12 @@ public class AuthServlet extends HttpServlet {
             handleRegister(req, resp);
         } else if ("/login".equals(path)) {
             handleLogin(req, resp);
+        } else if ("/logout".equals(path)) {
+            HttpSession session = req.getSession(false);
+            if (session != null) {
+                session.invalidate();
+            }
+            resp.sendRedirect(req.getContextPath() + "/api/auth/login");
         } else {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
